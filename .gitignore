@@ -1,0 +1,4 @@
+captures/
+__pycache__/
+*.pyc
+test/test.bin
