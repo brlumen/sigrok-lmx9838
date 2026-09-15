@@ -7,15 +7,15 @@ Semiconductor) LMX9838 Bluetooth serial port module, as described in
 
 The decoder stacks on top of the `uart` decoder and shows:
 
-- **RX/TX frames** – STX, packet type, opcode, length, checksum, data bytes, ETX;
-- **RX/TX packets** – one annotation per packet, e.g.
+- **RX/TX frames** - STX, packet type, opcode, length, checksum, data bytes, ETX;
+- **RX/TX packets** - one annotation per packet, e.g.
   `CFM GAP_READ_LOCAL_NAME: Status=OK, Name="DiaLink #D1625359"`;
-- **RX/TX fields** – decoded data fields of the common GAP/SPP commands
+- **RX/TX fields** - decoded data fields of the common GAP/SPP commands
   (status codes, Bluetooth addresses, port numbers, names, SPP payloads);
-- **Transactions** – every request paired with its confirm, with the
+- **Transactions** - every request paired with its confirm, with the
   response time, e.g. `GAP_READ_LOCAL_BDA -> COMMAND_DISALLOWED (2.8 ms)`;
-- **Events** – indications and responses (`IND SPP_INCOMING_DATA: ...`);
-- **Warnings** – bad checksum, bad length, missing ETX, unknown opcodes,
+- **Events** - indications and responses (`IND SPP_INCOMING_DATA: ...`);
+- **Warnings** - bad checksum, bad length, missing ETX, unknown opcodes,
   requests without confirm and vice versa.
 
 All 117 opcodes and the generic error codes from AN-1699 are known by name.
@@ -46,10 +46,10 @@ type (REQ/CFM/IND/RES) is taken from the frame itself.
 
 ## Contents
 
-- `lmx9838/` – the decoder (`__init__.py`, `pd.py`);
-- `dumps/` – example captures (`.sr`) with a README, as submitted to
+- `lmx9838/` - the decoder (`__init__.py`, `pd.py`);
+- `dumps/` - example captures (`.sr`) with a README, as submitted to
   [sigrok-dumps](https://github.com/sigrokproject/sigrok-dumps);
-- `test/` – test configuration and reference output for
+- `test/` - test configuration and reference output for
   [sigrok-test](https://github.com/sigrokproject/sigrok-test), plus
   `gen_test.py`, which synthesizes a two-channel UART stream with a set of
   packets for a quick smoke test:
