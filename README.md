@@ -20,6 +20,10 @@ The decoder stacks on top of the `uart` decoder and shows:
 
 All 117 opcodes and the generic error codes from AN-1699 are known by name.
 
+![Request/confirm transaction in PulseView](docs/pulseview_transaction.png)
+
+![Confirm packet with decoded fields](docs/pulseview_confirm.png)
+
 ## Installation
 
 Copy (or symlink) the `lmx9838` directory into your local decoder directory:
@@ -39,6 +43,18 @@ the RX/TX channels. With sigrok-cli:
         -P uart:baudrate=921600:rx=RX:tx=TX,lmx9838 \
         -A lmx9838=transaction:event:warning
 
+    lmx9838-1: GAP_READ_LOCAL_NAME -> OK, Name="DiaLink #D1625359" (3.8 ms)
+
+With all annotation classes enabled the same capture decodes as:
+
+    sigrok-cli -i dumps/lmx9838_gap_read_local_name.sr \
+        -P uart:baudrate=921600:rx=RX:tx=TX,lmx9838 \
+        -A lmx9838=rx-packet:tx-packet:rx-field:tx-field:transaction
+
+    lmx9838-1: REQ GAP_READ_LOCAL_NAME
+    lmx9838-1: Status: OK
+    lmx9838-1: Name: "DiaLink #D1625359"
+    lmx9838-1: CFM GAP_READ_LOCAL_NAME: Status=OK, Name="DiaLink #D1625359"
     lmx9838-1: GAP_READ_LOCAL_NAME -> OK, Name="DiaLink #D1625359" (3.8 ms)
 
 The direction of the channels does not matter for decoding: the packet
